@@ -1,16 +1,10 @@
 import { Flex, FlexCenter } from "../components/common";
 import LoginForm from "../components/forms/LoginForm";
 import { Typography } from "antd";
-import { useState } from "react";
+import useLoginForms from "../components/hooks/useLogin";
 
 const Login: React.FC = () => {
-  // When the user submits the form, we save the username in the local storage.
-  const [loading, setLoading] = useState(false);
-  const handleSubmit = (username: string) => {
-    setLoading(true);
-    localStorage.setItem("username", username);
-  };
-
+  const { handleSubmit, loading } = useLoginForms();
   return (
     <FlexCenter style={{ height: "100vh", width: "100vw" }}>
       <Flex
