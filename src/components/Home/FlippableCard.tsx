@@ -3,7 +3,11 @@ import Card from "./Card";
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
-const FlippableCard = () => {
+interface IFlippableCardProps {
+  item: number;
+}
+
+const FlippableCard = ({ item }: IFlippableCardProps) => {
   const [showFront, setShowFront] = useState(true);
   return (
     <div className="flippable-card-container">
@@ -12,6 +16,7 @@ const FlippableCard = () => {
           onClick={() => {
             setShowFront((v) => !v);
           }}
+          bgImage={require(`../assets/${item}.jpg`)}
         />
       </CSSTransition>
     </div>
