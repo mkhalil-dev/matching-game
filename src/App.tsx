@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { message } from "antd";
 import AppRoutes from "./routes";
 import AppContext from "./context/AppContext";
-import { message } from "antd";
 
 const App: React.FC = () => {
   // We use the AppContext to store the username of the user.
-  const [messageAPI, contextHolder] = message.useMessage();
+  //eslint-disable-next-line
+  const [_, contextHolder] = message.useMessage();
   const [username, setUsername] = useState<string>(
     localStorage.getItem("username") || ""
   );

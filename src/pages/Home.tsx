@@ -1,9 +1,25 @@
+import { Layout, Typography } from "antd";
+import Game from "../components/Home/Game";
+
+const { Header, Content } = Layout;
+
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Home page content</p>
-    </div>
+    <>
+      <Header style={{ background: "#fff", padding: 0 }}>
+        <Typography.Title
+          level={3}
+          style={{
+            textAlign: "center",
+          }}
+        >
+          Matching Cards
+        </Typography.Title>
+      </Header>
+      <Content>
+        <Game />
+      </Content>
+    </>
   );
 };
 
