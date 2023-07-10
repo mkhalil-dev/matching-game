@@ -20,9 +20,7 @@ const Game = () => {
     return array;
   };
 
-  useEffect(() => {
-    shuffle(array);
-  }, []);
+  const newShuffledArray = shuffle(array);
 
   return (
     <FlexCenter
@@ -31,7 +29,7 @@ const Game = () => {
       }}
     >
       <Row gutter={25} justify={"center"}>
-        {array.map((item, index) => (
+        {newShuffledArray.map((item, index) => (
           <Col key={index}>
             <FlippableCard item={item} />
           </Col>
