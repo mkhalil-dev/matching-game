@@ -4,14 +4,14 @@ import { validateUsername } from "../validations/loginValidations";
 import { Divider } from "antd";
 import { TLoginFormValues } from "../hooks/useLogin";
 
-type LoginFormProps = {
+type TLoginFormProps = {
   onSubmit: (values: TLoginFormValues) => void;
   loading?: boolean;
 };
 
 const { Item } = Form;
 
-const LoginForm = ({ loading, onSubmit }: LoginFormProps) => {
+const LoginForm = ({ loading, onSubmit }: TLoginFormProps) => {
   // When the user submits the form, we run the handleSubmit function and pass the username to the onSubmit function.
 
   return (
