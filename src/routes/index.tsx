@@ -6,6 +6,7 @@ import NotFound from "../pages/NotFound";
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
+      <Route path="/" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
