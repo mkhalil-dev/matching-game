@@ -1,7 +1,7 @@
-import React from "react";
 import { Button, Input } from "../common/index";
 import { Form } from "antd";
 import { validateUsername } from "../validations/loginValidations";
+import { Divider } from "antd";
 
 type LoginFormProps = {
   onSubmit: (username: string) => void;
@@ -22,6 +22,7 @@ const LoginForm = (props: LoginFormProps) => {
         name="username"
         rules={[
           {
+            required: true,
             validator: validateUsername,
           },
         ]}
@@ -29,8 +30,9 @@ const LoginForm = (props: LoginFormProps) => {
       >
         <Input />
       </Item>
+      <Divider />
       <Item>
-        <Button loading={props.loading} htmlType="submit">
+        <Button loading={props.loading} htmlType="submit" type="primary">
           Login
         </Button>
       </Item>
