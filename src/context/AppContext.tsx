@@ -1,11 +1,11 @@
 import { createContext } from "react";
 
-interface AppContextProps {
+interface IAppContextProps {
   username: string;
   setUsername: (username: string) => void;
 }
 
-const AppContext = createContext<AppContextProps>({
+const AppContext = createContext<IAppContextProps>({
   username: "",
   setUsername: () => {},
 });

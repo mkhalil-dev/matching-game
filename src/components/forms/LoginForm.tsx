@@ -2,20 +2,20 @@ import { Button, Input } from "../common/index";
 import { Form } from "antd";
 import { validateUsername } from "../validations/loginValidations";
 import { Divider } from "antd";
-import { LoginFormValues } from "../hooks/useLogin";
+import { TLoginFormValues } from "../hooks/useLogin";
 
 type LoginFormProps = {
-  onSubmit: (values: LoginFormValues) => void;
+  onSubmit: (values: TLoginFormValues) => void;
   loading?: boolean;
 };
 
 const { Item } = Form;
 
-const LoginForm = (props: LoginFormProps) => {
+const LoginForm = ({ loading, onSubmit }: LoginFormProps) => {
   // When the user submits the form, we run the handleSubmit function and pass the username to the onSubmit function.
 
   return (
-    <Form onFinish={props.onSubmit} layout="vertical">
+    <Form onFinish={onSubmit} layout="vertical">
       <Item
         name="username"
         rules={[
@@ -30,7 +30,7 @@ const LoginForm = (props: LoginFormProps) => {
       </Item>
       <Divider />
       <Item>
-        <Button loading={props.loading} htmlType="submit" type="primary">
+        <Button loading={loading} htmlType="submit" type="primary">
           Login
         </Button>
       </Item>

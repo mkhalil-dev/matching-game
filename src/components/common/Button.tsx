@@ -1,28 +1,10 @@
 import { Button as AntButton } from "antd";
+import { ButtonProps } from "antd/es/button/button";
 
-type ButtonProps = {
-  loading?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
+interface IButtonProps extends ButtonProps {
   children: React.ReactNode;
-  style?: React.CSSProperties;
-  size?: "small" | "middle" | "large";
-  type?: "primary" | "ghost" | "dashed" | "link" | "text" | "default";
-  htmlType?: "submit" | "button" | "reset";
-};
+}
 
-export const Button = (props: ButtonProps) => {
-  return (
-    <AntButton
-      style={props.style}
-      size={props.size}
-      loading={props.loading}
-      disabled={props.disabled}
-      onClick={props.onClick}
-      type={props.type}
-      htmlType={props.htmlType}
-    >
-      {props.children}
-    </AntButton>
-  );
+export const Button = ({ children, ...rest }: IButtonProps) => {
+  return <AntButton {...rest}>{children}</AntButton>;
 };

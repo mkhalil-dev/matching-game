@@ -2,15 +2,15 @@ import { useState, useContext } from "react";
 import AppContext from "../../context/AppContext";
 import { showMessage } from "../../components/common";
 
-export type LoginFormValues = {
+export type TLoginFormValues = {
   username: string;
 };
 
-const useLoginForms = () => {
+export const useLoginForms = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { setUsername } = useContext(AppContext);
 
-  const handleSubmit = (values: LoginFormValues) => {
+  const handleSubmit = (values: TLoginFormValues) => {
     try {
       setLoading(true);
       const { username } = values;
@@ -29,5 +29,3 @@ const useLoginForms = () => {
     loading,
   };
 };
-
-export default useLoginForms;
