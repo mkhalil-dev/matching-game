@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
-import AppContext from "../context/AppContext";
+import { useAuthContext } from "../context/AppContext";
 
 const AppRoutes: React.FC = () => {
-  const { username } = useContext(AppContext);
+  const { username } = useAuthContext();
   return (
     <Routes>
       <Route path="/" element={<Login />} />

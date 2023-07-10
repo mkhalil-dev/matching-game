@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import AppContext from "../../context/AppContext";
+import { useState } from "react";
+import { useAuthContext } from "../../context/AppContext";
 import { showMessage } from "../../components/common";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export type TLoginFormValues = {
 
 export const useLoginForms = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const { setUsername } = useContext(AppContext);
+  const { setUsername } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSubmit = (values: TLoginFormValues) => {
