@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import FlippableCard from "./FlippableCard";
 import { Col, Row } from "antd";
 import { FlexCenter } from "../common";

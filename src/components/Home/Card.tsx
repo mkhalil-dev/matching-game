@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import "./card.css";
 import "./flip-transition.css";
 
@@ -11,16 +10,14 @@ interface ICardProps {
 const Card = ({ onClick, bgImage, cardRef }: ICardProps) => {
   return (
     <div className="card" onClick={onClick} ref={cardRef}>
+      <div className="card-back">Card</div>
       <div
-        className="card-back"
+        className="card-front"
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
         }}
-      >
-        Back
-      </div>
-      <div className="card-front">Front</div>
+      />
     </div>
   );
 };
