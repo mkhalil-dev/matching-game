@@ -1,7 +1,7 @@
 import FlippableCard from "./FlippableCard/FlippableCard";
 import { Col, Row } from "antd";
 import { FlexCenter } from "../common";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useCardClick } from "./hooks/useCardClick";
 
@@ -16,6 +16,7 @@ export interface ISelectedCard {
   index: number;
 }
 
+// Create an array of 16 cards with values from 0 to 7 and shuffle them
 const shuffledArray = shuffle([
   0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7,
 ]).map((item, index) => ({
@@ -24,7 +25,8 @@ const shuffledArray = shuffle([
   index,
 }));
 
-// Create a new array of objects with the following structure:
+// Time to flip the card in milliseconds
+const timeToFlip = 5 * 1000;
 
 const Game = () => {
   const [selectedCards, setSelectedCards] = useState<ISelectedCard[]>([]);
@@ -39,18 +41,23 @@ const Game = () => {
     setSelectedCards,
   });
 
+  // Flip the cards back after 5 seconds
+  useEffect(() => {
+    setTimeout(() => {
+      const newCards = cards.map((item) => ({ ...item, isFlipped: false }));
+      setCards(newCards);
+    }, timeToFlip);
+  }, []);
+
   return (
-    <FlexCenter style={{}}>
+    <FlexCenter>
       <Row gutter={25} justify={"center"}>
         {cards.map((card, index) => (
           <Col key={index}>
             <FlippableCard
               handleClick={handleClick}
               selectedCards={selectedCards}
-              index={index}
               card={card}
-              setCards={setCards}
-              cards={cards}
             />
           </Col>
         ))}

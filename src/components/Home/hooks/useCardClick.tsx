@@ -12,10 +12,9 @@ interface IUseCardClickProps {
 
 export interface ICardClickProps {
   card: ICard;
-  index: number;
 }
 
-// Time to flip back a card when not correct in milliseconds
+// Time to flip back a card when not correct after 2 seconds
 const timetoUnflip = 2 * 1000;
 
 export const useCardClick = ({
@@ -26,19 +25,21 @@ export const useCardClick = ({
   setFoundMatches,
   setSelectedCards,
 }: IUseCardClickProps) => {
-  const handleClick = ({ card, index }: ICardClickProps) => {
+  const handleClick = ({ card }: ICardClickProps) => {
+    const { index, value, isFlipped } = card;
+
     // If the card is already flipped or if there are 2 already flipped, do nothing
-    if (card.isFlipped || selectedCards.length === 2) return;
+    if (isFlipped || selectedCards.length === 2) return;
     // If the card is not flipped, flip it
     const newCards = [...cards];
     newCards[index].isFlipped = true;
     setCards(newCards);
     // Add the card to the selected cards
-    setSelectedCards([...selectedCards, { value: card.value, index }]);
+    setSelectedCards([...selectedCards, { value: value, index }]);
     if (selectedCards.length === 1) {
       // If there is one selected card, check if the value of the selected card is the same as the value of the card that was just clicked
-      if (selectedCards[0].value !== card.value) {
-        // If the values are not the same flip the cards back after 1 second
+      if (selectedCards[0].value !== value) {
+        // If the values are not the same flip the cards back after 2 second
         setTimeout(() => {
           setCards(
             cards.map((item) => {
@@ -51,15 +52,16 @@ export const useCardClick = ({
           setSelectedCards([]);
         }, timetoUnflip);
       } else {
-        // If the values are the same, add the index of the cards to the foundMatches array
+        // If the foundMatches array already has a length of 7, the game is over
         if (foundMatches.length === 7) {
           showMessage("success", "You won!");
+        } else {
+          // If the values are the same, add the index of the cards to the foundMatches array
+          setFoundMatches([...foundMatches, value]);
         }
-        setFoundMatches([...foundMatches, card.value]);
+        // Reset the selected cards
         setSelectedCards([]);
-        // If the foundMatches array has a length of 14, the game is over
       }
-      // Reset the selected cards
     }
   };
 

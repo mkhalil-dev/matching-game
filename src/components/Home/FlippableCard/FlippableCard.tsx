@@ -7,34 +7,16 @@ import { ICardClickProps } from "../hooks/useCardClick";
 
 interface IFlippableCardProps {
   selectedCards: ISelectedCard[];
-  index: number;
   card: ICard;
-  cards: ICard[];
-  setCards: (cards: ICard[]) => void;
-  handleClick: ({ card, index }: ICardClickProps) => void;
+  handleClick: ({ card }: ICardClickProps) => void;
 }
-
-// Time to flip the card in milliseconds
-const timeToFlip = 5 * 1000;
 
 const FlippableCard = ({
   selectedCards,
-  index,
   card,
-  cards,
-  setCards,
   handleClick,
 }: IFlippableCardProps) => {
   const ref = useRef(null);
-
-  // Flip the card after 5 seconds`
-  useEffect(() => {
-    setTimeout(() => {
-      const newCards = [...cards];
-      newCards[index].isFlipped = false;
-      setCards(newCards);
-    }, timeToFlip);
-  }, []);
 
   return (
     <div className="flippable-card-container">
@@ -45,7 +27,7 @@ const FlippableCard = ({
         nodeRef={ref}
       >
         <Card
-          onClick={() => handleClick({ card, index })}
+          onClick={() => handleClick({ card })}
           bgImage={require(`../../assets/${card.value}.jpg`)}
           cardRef={ref}
           disabled={selectedCards.length === 2}
