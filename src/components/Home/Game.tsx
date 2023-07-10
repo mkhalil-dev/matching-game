@@ -3,6 +3,7 @@ import { Col, Row } from "antd";
 import { FlexCenter } from "../common";
 import { useState } from "react";
 import { shuffle } from "lodash";
+import { useCardClick } from "./hooks/useCardClick";
 
 export interface ICard {
   value: number;
@@ -29,25 +30,27 @@ const Game = () => {
   const [selectedCards, setSelectedCards] = useState<ISelectedCard[]>([]);
   const [cards, setCards] = useState<ICard[]>(shuffledArray);
   const [foundMatches, setFoundMatches] = useState<number[]>([]);
+  const { handleClick } = useCardClick({
+    cards,
+    foundMatches,
+    selectedCards,
+    setCards,
+    setFoundMatches,
+    setSelectedCards,
+  });
 
   return (
-    <FlexCenter
-      style={{
-        margin: "0 200px",
-      }}
-    >
+    <FlexCenter style={{}}>
       <Row gutter={25} justify={"center"}>
         {cards.map((card, index) => (
           <Col key={index}>
             <FlippableCard
-              setSelectedCards={setSelectedCards}
+              handleClick={handleClick}
               selectedCards={selectedCards}
               index={index}
               card={card}
               setCards={setCards}
               cards={cards}
-              foundMatches={foundMatches}
-              setFoundMatches={setFoundMatches}
             />
           </Col>
         ))}
