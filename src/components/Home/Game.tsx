@@ -1,7 +1,18 @@
-import FlippableCard from "./FlippableCard";
+import FlippableCard from "./FlippableCard/FlippableCard";
 import { Col, Row } from "antd";
 import { FlexCenter } from "../common";
 import { useState } from "react";
+
+export interface ICard {
+  value: number;
+  isFlipped: boolean;
+  index: number;
+}
+
+export interface ISelectedCard {
+  value: number;
+  index: number;
+}
 
 const array = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7];
 const shuffle = (array: number[]) => {
@@ -22,26 +33,14 @@ const newShuffledArray = shuffle(array);
 // Create a new array of objects with the following structure:
 
 const Game = () => {
-  const [selectedCards, setSelectedCards] = useState<
-    {
-      value: number;
-      index: number;
-    }[]
-  >([]);
-  const [gameArray, setGameArray] = useState<
-    {
-      value: number;
-      isFlipped: boolean;
-      index: number;
-    }[]
-  >(
+  const [selectedCards, setSelectedCards] = useState<ISelectedCard[]>([]);
+  const [cards, setCards] = useState<ICard[]>(
     newShuffledArray.map((item, index) => ({
       value: item,
       isFlipped: true,
       index,
     }))
   );
-  const [attempts, setAttempts] = useState<number>(0);
   const [foundMatches, setFoundMatches] = useState<number[]>([]);
 
   return (
@@ -51,15 +50,15 @@ const Game = () => {
       }}
     >
       <Row gutter={25} justify={"center"}>
-        {gameArray.map((item, index) => (
+        {cards.map((card, index) => (
           <Col key={index}>
             <FlippableCard
               setSelectedCards={setSelectedCards}
               selectedCards={selectedCards}
               index={index}
-              gameItem={item}
-              setGameArray={setGameArray}
-              gameArray={gameArray}
+              card={card}
+              setCards={setCards}
+              cards={cards}
               foundMatches={foundMatches}
               setFoundMatches={setFoundMatches}
             />
