@@ -11,8 +11,9 @@ interface ICardProps {
 const Card = ({ onClick, bgImage, cardRef, disabled }: ICardProps) => {
   return (
     <>
-      <div className="card" onClick={onClick} ref={cardRef}>
+      <div data-testid="card" className="card" onClick={onClick} ref={cardRef}>
         <div
+          data-testid="card-back"
           className="card-back"
           style={{
             pointerEvents: disabled ? "none" : "auto",
@@ -21,6 +22,7 @@ const Card = ({ onClick, bgImage, cardRef, disabled }: ICardProps) => {
           Card
         </div>
         <div
+          data-testid="card-front"
           className="card-front"
           style={{
             backgroundImage: `url(${bgImage})`,

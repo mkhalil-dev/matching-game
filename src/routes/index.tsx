@@ -9,9 +9,12 @@ const AppRoutes: React.FC = () => {
   const { username } = useAuthContext();
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      {username ? (
+        <Route path="/home" element={<Home />} />
+      ) : (
+        <Route path="/" element={<Login />} />
+      )}
       <Route path="*" element={<NotFound />} />
-      {username && <Route path="/home" element={<Home />} />}
     </Routes>
   );
 };
