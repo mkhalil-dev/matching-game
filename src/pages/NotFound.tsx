@@ -1,5 +1,5 @@
 import { Result } from "antd";
-import { FlexCenter } from "../components/common/Flex";
+import { Button, FlexCenter } from "../components/common/index";
 
 const NotFound = () => {
   return (
@@ -13,6 +13,11 @@ const NotFound = () => {
         status="404"
         title="404"
         subTitle="Sorry, the page you visited does not exist."
+        extra={
+          <Button onClick={() => window.location.replace("/")}>
+            Back Home
+          </Button>
+        }
       />
     </FlexCenter>
   );

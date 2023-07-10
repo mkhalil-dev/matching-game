@@ -9,7 +9,7 @@ type ButtonProps = {
   size?: "small" | "middle" | "large";
 };
 
-const Button = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
   return (
     <AntButton
       style={props.style}
@@ -22,5 +22,3 @@ const Button = (props: ButtonProps) => {
     </AntButton>
   );
 };
-
-export default Button;
