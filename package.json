@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "@types/react-transition-group": "^4.4.6",
     "prettier": "3.0.0"
   }

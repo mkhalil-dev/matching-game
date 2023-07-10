@@ -2,6 +2,7 @@ import FlippableCard from "./FlippableCard/FlippableCard";
 import { Col, Row } from "antd";
 import { FlexCenter } from "../common";
 import { useState } from "react";
+import { shuffle } from "lodash";
 
 export interface ICard {
   value: number;
@@ -14,33 +15,19 @@ export interface ISelectedCard {
   index: number;
 }
 
-const array = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7];
-const shuffle = (array: number[]) => {
-  let currentIndex = array.length,
-    randomIndex;
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-  return array;
-};
-const newShuffledArray = shuffle(array);
+const shuffledArray = shuffle([
+  0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7,
+]).map((item, index) => ({
+  value: item,
+  isFlipped: true,
+  index,
+}));
 
 // Create a new array of objects with the following structure:
 
 const Game = () => {
   const [selectedCards, setSelectedCards] = useState<ISelectedCard[]>([]);
-  const [cards, setCards] = useState<ICard[]>(
-    newShuffledArray.map((item, index) => ({
-      value: item,
-      isFlipped: true,
-      index,
-    }))
-  );
+  const [cards, setCards] = useState<ICard[]>(shuffledArray);
   const [foundMatches, setFoundMatches] = useState<number[]>([]);
 
   return (
