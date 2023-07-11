@@ -1,5 +1,6 @@
 import { ICard, ISelectedCard } from "../Game";
 import { showMessage } from "../../common";
+import { useNavigate } from "react-router-dom";
 
 interface IUseCardClickProps {
   cards: ICard[];
@@ -29,6 +30,7 @@ export const useCardClick = ({
   attempts,
   setAttempts,
 }: IUseCardClickProps) => {
+  const navigate = useNavigate();
   const handleClick = ({ card }: ICardClickProps) => {
     const { index, value, isFlipped } = card;
 
@@ -59,14 +61,7 @@ export const useCardClick = ({
       } else {
         // If the foundMatches array already has a length of 7, the game is over
         if (foundMatches.length === 7) {
-          showMessage("success", "You won!");
-          setAttempts(0);
-          setFoundMatches([]);
-          setCards(
-            cards.map((item) => {
-              return { ...item, isFlipped: false };
-            })
-          );
+          navigate("/success");
         } else {
           // If the values are the same, add the index of the cards to the foundMatches array
           setFoundMatches([...foundMatches, value]);

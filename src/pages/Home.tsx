@@ -1,58 +1,25 @@
-import { Layout, Typography } from "antd";
+import { Typography } from "antd";
 import Game from "../components/Home/Game";
-import { AppMenu } from "../components/common/navigation/NavBar";
 import { SubMenu } from "../components/Home/SubMenu/SubMenu";
-import { useState } from "react";
-
-const { Header, Content, Footer } = Layout;
+import { AppLayout } from "../components/common/Layout/Layout";
+import { useGameContext } from "../context/GameContext";
 
 const Home = () => {
-  const [attempts, setAttempts] = useState<number>(0);
+  const { attempts, setAttempts } = useGameContext();
 
   return (
-    <>
-      <Layout
+    <AppLayout>
+      <Typography.Title
+        level={3}
         style={{
-          minHeight: "100vh",
+          textAlign: "center",
         }}
       >
-        <Layout>
-          <Header
-            style={{
-              padding: 0,
-              marginBottom: "24px",
-              backgroundColor: "#fff",
-            }}
-          >
-            <AppMenu />
-          </Header>
-          <Content
-            style={{
-              padding: "0 12px",
-            }}
-          >
-            <Typography.Title
-              level={3}
-              style={{
-                textAlign: "center",
-              }}
-            >
-              Matching Cards
-            </Typography.Title>
-            <SubMenu attempts={attempts} />
-            <Game attempts={attempts} setAttempts={setAttempts} />
-          </Content>
-        </Layout>
-        <Footer
-          style={{
-            textAlign: "center",
-            borderTop: "1px solid #f0f0f0",
-          }}
-        >
-          Matching Cards Game ©2023 Created by Mohamad Khalil
-        </Footer>
-      </Layout>
-    </>
+        Matching Cards
+      </Typography.Title>
+      <SubMenu attempts={attempts} />
+      <Game attempts={attempts} setAttempts={setAttempts} />
+    </AppLayout>
   );
 };
 
