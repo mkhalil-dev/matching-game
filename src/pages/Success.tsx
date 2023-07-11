@@ -14,7 +14,9 @@ export const Success = () => {
       <Result
         status="success"
         title="Congratulations, you won!"
-        subTitle={`You found all the matching cards in ${attempts} attempts. It took you ${time} seconds to complete the game.`}
+        subTitle={`You found all the matching cards with ${attempts} ${
+          attempts > 1 ? "mismatches" : "mismatch"
+        }. It took you ${time} seconds to complete the game.`}
         icon={<Image src={celebrate} preview={false} width={300} />}
         extra={[
           <Button

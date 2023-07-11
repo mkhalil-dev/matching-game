@@ -53,6 +53,7 @@ const Game = ({ attempts }: IGameProps) => {
 
   // Flip the cards back after 5 seconds
   useEffect(() => {
+    setAttempts(0);
     setTimeout(() => {
       const newCards = cards.map((item) => ({ ...item, isFlipped: false }));
       setCards(newCards);
