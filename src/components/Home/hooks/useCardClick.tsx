@@ -1,5 +1,4 @@
 import { ICard, ISelectedCard } from "../Game";
-import { useNavigate } from "react-router-dom";
 
 interface IUseCardClickProps {
   cards: ICard[];
@@ -7,11 +6,13 @@ interface IUseCardClickProps {
   foundMatches: number[];
   attempts: number;
   time: number;
+  visible: boolean;
   setAttempts: (attempts: number) => void;
   setCards: (cards: ICard[]) => void;
   setSelectedCards: (selectedCards: ISelectedCard[]) => void;
   setFoundMatches: (foundMatches: number[]) => void;
   setTime: (time: number) => void;
+  setVisible: (visible: boolean) => void;
 }
 
 export interface ICardClickProps {
@@ -32,8 +33,9 @@ export const useCardClick = ({
   setAttempts,
   time,
   setTime,
+  visible,
+  setVisible,
 }: IUseCardClickProps) => {
-  const navigate = useNavigate();
   const handleClick = ({ card }: ICardClickProps) => {
     const { index, value, isFlipped } = card;
 
@@ -69,7 +71,7 @@ export const useCardClick = ({
           // Calculate the time it took to finish the game
           const timeToFinish = Math.floor((Date.now() - time) / 1000);
           setTime(timeToFinish);
-          navigate("/success");
+          setVisible(true);
         } else {
           // If the values are the same, add the index of the cards to the foundMatches array
           setFoundMatches([...foundMatches, value]);
