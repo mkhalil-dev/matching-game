@@ -2,6 +2,7 @@ import { Image, Modal, Result } from "antd";
 import { useAuthContext } from "../../../context/AppContext";
 import { useGameContext } from "../../../context/GameContext";
 import celebrate from "../../assets/celebrate.png";
+import { Button, SuccessButton } from "../../common";
 
 interface ISuccessModalProps {
   visible: boolean;
@@ -11,7 +12,8 @@ interface ISuccessModalProps {
 export const SuccessModal = ({ visible }: ISuccessModalProps) => {
   const { username } = useAuthContext();
   const { attempts, time } = useGameContext();
-  const handleOk = () => {
+
+  const handlePlayAgain = () => {
     window.location.reload();
   };
 
@@ -23,15 +25,29 @@ export const SuccessModal = ({ visible }: ISuccessModalProps) => {
   return (
     <Modal
       open={visible}
-      onOk={handleOk}
-      onCancel={handleCancel}
+      onCancel={handlePlayAgain}
       okText="Play Again"
       cancelText="Log Out"
       centered
+      footer={[
+        <Button
+          key="back"
+          onClick={handleCancel}
+          danger
+          children={"Log out"}
+        />,
+        <SuccessButton
+          key="submit"
+          onClick={handlePlayAgain}
+          children={"Play again!"}
+        />,
+      ]}
     >
       <Result
         status="success"
-        subTitle={`You won in ${attempts} attempts and ${time} seconds`}
+        subTitle={`You won with ${attempts} ${
+          attempts > 1 ? "mismatches" : "mismatch"
+        }. It took you ${time} seconds.`}
         title={`Congratulations ${username}!`}
         icon={<Image src={celebrate} preview={false} width={250} />}
       />
