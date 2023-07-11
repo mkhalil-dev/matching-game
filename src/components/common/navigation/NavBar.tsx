@@ -64,9 +64,10 @@ export const AppMenu: React.FC = () => {
         <Typography.Text
           style={{
             fontSize: "12px",
+            textAlign: "center",
           }}
         >
-          Welcome, {username}
+          Welcome {username}
         </Typography.Text>
         <Button
           onClick={handleLogout}
