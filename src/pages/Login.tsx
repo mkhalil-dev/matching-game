@@ -1,5 +1,5 @@
 import { Flex, FlexCenter } from "../components/common";
-import LoginForm from "../components/Login/hooks/forms/LoginForm";
+import LoginForm from "../components/Login/forms/LoginForm";
 import { Typography } from "antd";
 import { useLoginForms } from "../components/Login/hooks/useLogin";
 
