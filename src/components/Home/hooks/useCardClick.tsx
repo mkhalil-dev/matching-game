@@ -1,5 +1,4 @@
 import { ICard, ISelectedCard } from "../Game";
-import { showMessage } from "../../common";
 import { useNavigate } from "react-router-dom";
 
 interface IUseCardClickProps {

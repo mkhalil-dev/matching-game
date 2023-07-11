@@ -36,7 +36,16 @@ export const SubMenu = ({ attempts }: ISubMenuProps) => {
       >
         Find all the matching cards
       </Title>
-      <Button>Reset</Button>
+      <Button
+        danger
+        type="primary"
+        onClick={() => {
+          // Reset the game
+          window.location.reload();
+        }}
+      >
+        Reset
+      </Button>
     </Flex>
   );
 };
