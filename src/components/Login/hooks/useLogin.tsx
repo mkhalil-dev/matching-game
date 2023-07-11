@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuthContext } from "../../context/AppContext";
-import { showMessage } from "../../components/common";
+import { useAuthContext } from "../../../context/AppContext";
+import { showMessage } from "../../common";
 import { useNavigate } from "react-router-dom";
 
 export type TLoginFormValues = {

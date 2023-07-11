@@ -1,8 +1,8 @@
-import { Button, Input } from "../common/index";
+import { Button, Input } from "../../../common/index";
 import { Form } from "antd";
 import { validateUsername } from "../validations/loginValidations";
 import { Divider } from "antd";
-import { TLoginFormValues } from "../hooks/useLogin";
+import { TLoginFormValues } from "../useLogin";
 
 type TLoginFormProps = {
   onSubmit: (values: TLoginFormValues) => void;

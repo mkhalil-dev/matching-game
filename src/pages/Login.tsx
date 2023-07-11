@@ -1,7 +1,7 @@
 import { Flex, FlexCenter } from "../components/common";
-import LoginForm from "../components/forms/LoginForm";
+import LoginForm from "../components/Login/hooks/forms/LoginForm";
 import { Typography } from "antd";
-import { useLoginForms } from "../components/hooks/useLogin";
+import { useLoginForms } from "../components/Login/hooks/useLogin";
 
 const Login: React.FC = () => {
   const { handleSubmit, loading } = useLoginForms();
