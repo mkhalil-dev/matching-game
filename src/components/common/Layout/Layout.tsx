@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { AppMenu } from "../Navigation/NavBar";
+import { AppMenu } from "../navigation/NavBar";
 
 const { Header, Content, Footer } = Layout;
 
