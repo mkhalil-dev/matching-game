@@ -15,7 +15,7 @@ const LoginForm = ({ loading, onSubmit }: TLoginFormProps) => {
   // When the user submits the form, we run the handleSubmit function and pass the username to the onSubmit function.
 
   return (
-    <Form onFinish={onSubmit} layout="vertical">
+    <Form onFinish={onSubmit} layout="vertical" data-testid="login-form">
       <Item
         name="username"
         rules={[
@@ -26,12 +26,18 @@ const LoginForm = ({ loading, onSubmit }: TLoginFormProps) => {
         ]}
         label="Username"
       >
-        <Input />
+        <Input data-testid="login-form-username" />
       </Item>
       <Divider />
       <Item>
-        <Button loading={loading} htmlType="submit" type="primary">
-          Login
+        <Button
+          loading={loading}
+          data-testid="login-form-submit"
+          htmlType="submit"
+          type="primary"
+          block
+        >
+          Start playing
         </Button>
       </Item>
     </Form>

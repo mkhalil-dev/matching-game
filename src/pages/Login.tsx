@@ -3,10 +3,15 @@ import LoginForm from "../components/Login/forms/LoginForm";
 import { Typography } from "antd";
 import { useLoginForms } from "../components/Login/hooks/useLogin";
 
+const { Title } = Typography;
+
 const Login: React.FC = () => {
   const { handleSubmit, loading } = useLoginForms();
   return (
-    <FlexCenter style={{ height: "100vh", width: "100vw" }}>
+    <FlexCenter
+      style={{ height: "100vh", width: "100vw" }}
+      dataTestId="login-page"
+    >
       <Flex
         style={{
           border: "1px solid #ccc",
@@ -16,7 +21,9 @@ const Login: React.FC = () => {
           width: "300px",
         }}
       >
-        <Typography.Title level={3}>Login</Typography.Title>
+        <Title data-testid="login-form-title" level={3}>
+          Login
+        </Title>
         <LoginForm onSubmit={handleSubmit} loading={loading} />
       </Flex>
     </FlexCenter>
