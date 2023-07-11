@@ -17,6 +17,7 @@ const Card = ({ onClick, bgImage, cardRef, disabled }: ICardProps) => {
           className="card-back"
           style={{
             pointerEvents: disabled ? "none" : "auto",
+            textAlign: "center",
           }}
         >
           Card
