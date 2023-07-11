@@ -35,8 +35,9 @@ const LoginForm = ({ loading, onSubmit }: TLoginFormProps) => {
           data-testid="login-form-submit"
           htmlType="submit"
           type="primary"
+          block
         >
-          Login
+          Start playing
         </Button>
       </Item>
     </Form>
