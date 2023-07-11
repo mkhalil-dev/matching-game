@@ -15,7 +15,7 @@ const LoginForm = ({ loading, onSubmit }: TLoginFormProps) => {
   // When the user submits the form, we run the handleSubmit function and pass the username to the onSubmit function.
 
   return (
-    <Form onFinish={onSubmit} layout="vertical">
+    <Form onFinish={onSubmit} layout="vertical" data-testid="login-form">
       <Item
         name="username"
         rules={[
