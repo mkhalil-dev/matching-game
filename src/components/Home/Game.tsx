@@ -54,6 +54,7 @@ const Game = ({ attempts, setAttempts }: IGameProps) => {
       const newCards = cards.map((item) => ({ ...item, isFlipped: false }));
       setCards(newCards);
     }, timeToFlip);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
