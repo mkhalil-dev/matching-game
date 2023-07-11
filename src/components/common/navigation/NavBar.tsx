@@ -1,11 +1,12 @@
 import { HomeOutlined, LogoutOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Menu } from "antd";
+import { Menu, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flex } from "../Flex";
 import { Button } from "../Button";
 import { useAuthContext } from "../../../context/AppContext";
+import "./NavBar.css";
 
 const items: MenuProps["items"] = [
   {
@@ -17,7 +18,7 @@ const items: MenuProps["items"] = [
 
 export const AppMenu: React.FC = () => {
   const navigate = useNavigate();
-  const { setUsername } = useAuthContext();
+  const { username, setUsername } = useAuthContext();
 
   const handleLogout = () => {
     localStorage.removeItem("username");
@@ -40,6 +41,7 @@ export const AppMenu: React.FC = () => {
       style={{
         alignItems: "center",
         borderBottom: "1px solid #f0f0f0",
+        backgroundColor: "#fff",
       }}
     >
       <Menu
@@ -47,23 +49,34 @@ export const AppMenu: React.FC = () => {
         mode="horizontal"
         items={items}
         selectedKeys={selectedKey}
+        className="NavMenu"
         style={{
-          lineHeight: "64px",
-          width: "100%",
           borderBottom: "none",
         }}
       />
-      <Button
-        onClick={handleLogout}
-        danger
-        icon={<LogoutOutlined />}
+      <Flex
         style={{
           marginRight: "16px",
+          width: "170",
+          alignItems: "center",
         }}
-        type="link"
       >
-        Logout
-      </Button>
+        <Typography.Text
+          style={{
+            fontSize: "12px",
+          }}
+        >
+          Welcome, {username}
+        </Typography.Text>
+        <Button
+          onClick={handleLogout}
+          danger
+          icon={<LogoutOutlined />}
+          type="link"
+        >
+          Logout
+        </Button>
+      </Flex>
     </Flex>
   );
 };

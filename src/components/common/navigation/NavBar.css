@@ -1,0 +1,9 @@
+.NavMenu {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .NavMenu {
+    width: 50%;
+  }
+}
