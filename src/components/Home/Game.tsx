@@ -16,6 +16,11 @@ export interface ISelectedCard {
   index: number;
 }
 
+export interface IGameProps {
+  attempts: number;
+  setAttempts: (attempts: number) => void;
+}
+
 // Create an array of 16 cards with values from 0 to 7 and shuffle them
 const shuffledArray = shuffle([
   0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7,
@@ -28,7 +33,7 @@ const shuffledArray = shuffle([
 // Time to flip the card in milliseconds
 const timeToFlip = 5 * 1000;
 
-const Game = () => {
+const Game = ({ attempts, setAttempts }: IGameProps) => {
   const [selectedCards, setSelectedCards] = useState<ISelectedCard[]>([]);
   const [cards, setCards] = useState<ICard[]>(shuffledArray);
   const [foundMatches, setFoundMatches] = useState<number[]>([]);
@@ -39,6 +44,8 @@ const Game = () => {
     setCards,
     setFoundMatches,
     setSelectedCards,
+    attempts,
+    setAttempts,
   });
 
   // Flip the cards back after 5 seconds
@@ -51,13 +58,7 @@ const Game = () => {
 
   return (
     <FlexCenter>
-      <Row
-        gutter={[30, 30]}
-        justify={"center"}
-        style={{
-          margin: "0 auto",
-        }}
-      >
+      <Row gutter={[20, 30]} justify={"center"}>
         {cards.map((card, index) => (
           <Col key={index}>
             <FlippableCard

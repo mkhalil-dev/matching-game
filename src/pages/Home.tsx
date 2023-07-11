@@ -1,10 +1,14 @@
 import { Layout, Typography } from "antd";
 import Game from "../components/Home/Game";
 import { AppMenu } from "../components/common/navigation/NavBar";
+import { SubMenu } from "../components/Home/SubMenu/SubMenu";
+import { useState } from "react";
 
 const { Header, Content, Footer } = Layout;
 
 const Home = () => {
+  const [attempts, setAttempts] = useState<number>(0);
+
   return (
     <>
       <Layout
@@ -24,7 +28,7 @@ const Home = () => {
           </Header>
           <Content
             style={{
-              margin: "24px 0",
+              padding: "0 12px",
             }}
           >
             <Typography.Title
@@ -35,7 +39,8 @@ const Home = () => {
             >
               Matching Cards
             </Typography.Title>
-            <Game />
+            <SubMenu attempts={attempts} />
+            <Game attempts={attempts} setAttempts={setAttempts} />
           </Content>
         </Layout>
         <Footer

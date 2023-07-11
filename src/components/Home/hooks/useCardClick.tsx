@@ -5,6 +5,8 @@ interface IUseCardClickProps {
   cards: ICard[];
   selectedCards: ISelectedCard[];
   foundMatches: number[];
+  attempts: number;
+  setAttempts: (attempts: number) => void;
   setCards: (cards: ICard[]) => void;
   setSelectedCards: (selectedCards: ISelectedCard[]) => void;
   setFoundMatches: (foundMatches: number[]) => void;
@@ -24,6 +26,8 @@ export const useCardClick = ({
   setCards,
   setFoundMatches,
   setSelectedCards,
+  attempts,
+  setAttempts,
 }: IUseCardClickProps) => {
   const handleClick = ({ card }: ICardClickProps) => {
     const { index, value, isFlipped } = card;
@@ -40,6 +44,7 @@ export const useCardClick = ({
       // If there is one selected card, check if the value of the selected card is the same as the value of the card that was just clicked
       if (selectedCards[0].value !== value) {
         // If the values are not the same flip the cards back after 2 second
+        setAttempts(attempts + 1);
         setTimeout(() => {
           setCards(
             cards.map((item) => {
@@ -55,6 +60,13 @@ export const useCardClick = ({
         // If the foundMatches array already has a length of 7, the game is over
         if (foundMatches.length === 7) {
           showMessage("success", "You won!");
+          setAttempts(0);
+          setFoundMatches([]);
+          setCards(
+            cards.map((item) => {
+              return { ...item, isFlipped: false };
+            })
+          );
         } else {
           // If the values are the same, add the index of the cards to the foundMatches array
           setFoundMatches([...foundMatches, value]);
