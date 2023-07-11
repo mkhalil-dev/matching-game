@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { ComponentProps } from "react";
 import FlippableCard from "./FlippableCard";
 
@@ -17,8 +17,8 @@ describe("Card", () => {
     jest.clearAllMocks();
   });
 
-  const { getByTestId } = render(<FlippableCard {...defaultValues} />);
+  render(<FlippableCard {...defaultValues} />);
   it("should render a card", () => {
-    expect(getByTestId("card")).toBeInTheDocument();
+    expect(screen.getByTestId("card")).toBeInTheDocument();
   });
 });

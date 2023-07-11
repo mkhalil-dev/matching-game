@@ -1,6 +1,6 @@
 import LoginForm from "./LoginForm";
 import { ComponentProps } from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 window.matchMedia = (query) => ({
   matches: false,
@@ -23,8 +23,8 @@ describe("LoginForm", () => {
     jest.clearAllMocks();
   });
 
-  const { getByTestId } = render(<LoginForm {...defaultValues} />);
+  render(<LoginForm {...defaultValues} />);
   it("should render correct values", () => {
-    expect(getByTestId("login-form")).toHaveTextContent("Username");
+    expect(screen.getByTestId("login-form")).toHaveTextContent("Username");
   });
 });

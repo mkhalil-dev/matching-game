@@ -14,26 +14,27 @@ describe("Card", () => {
     jest.clearAllMocks();
   });
 
-  const { getByTestId } = render(<Card {...defaultValues} />);
+  render(<Card {...defaultValues} />);
+
   it("should render correct values", () => {
-    expect(getByTestId("card-back")).toHaveTextContent("Card");
+    expect(screen.getByTestId("card-back")).toHaveTextContent("Card");
   });
 
   it("should call onClick", () => {
-    const { getByTestId } = render(<Card {...defaultValues} />);
-    const card = getByTestId("card");
+    render(<Card {...defaultValues} />);
+    const card = screen.getByTestId("card");
     card.click();
     expect(defaultValues.onClick).toHaveBeenCalled();
   });
 
   it("should be non clickable", () => {
-    const { getByTestId } = render(<Card {...defaultValues} disabled={true} />);
-    expect(getByTestId("card-back")).toHaveStyle("pointer-events: none");
+    render(<Card {...defaultValues} disabled={true} />);
+    expect(screen.getByTestId("card-back")).toHaveStyle("pointer-events: none");
   });
 
   it("should use correct background", () => {
-    const { getByTestId } = render(<Card {...defaultValues} />);
-    expect(getByTestId("card-front")).toHaveStyle(
+    render(<Card {...defaultValues} />);
+    expect(screen.getByTestId("card-front")).toHaveStyle(
       `background-image: url(${defaultValues.bgImage});`
     );
   });
