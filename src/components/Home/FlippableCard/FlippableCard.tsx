@@ -1,6 +1,6 @@
 import "./flippable-card.css";
 import Card from "../Card/Card";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import { ICard, ISelectedCard } from "../Game";
 import { ICardClickProps } from "../hooks/useCardClick";

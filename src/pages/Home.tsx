@@ -7,7 +7,15 @@ const { Header, Content } = Layout;
 const Home = () => {
   return (
     <>
-      <AppMenu />
+      <Header
+        style={{
+          padding: 0,
+          marginBottom: "24px",
+          backgroundColor: "#fff",
+        }}
+      >
+        <AppMenu />
+      </Header>
       <Content>
         <Typography.Title
           level={3}

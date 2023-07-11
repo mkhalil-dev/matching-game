@@ -51,7 +51,13 @@ const Game = () => {
 
   return (
     <FlexCenter>
-      <Row gutter={25} justify={"center"}>
+      <Row
+        gutter={[30, 30]}
+        justify={"center"}
+        style={{
+          margin: "0 auto",
+        }}
+      >
         {cards.map((card, index) => (
           <Col key={index}>
             <FlippableCard
