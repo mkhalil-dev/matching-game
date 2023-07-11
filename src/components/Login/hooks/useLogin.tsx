@@ -1,22 +1,25 @@
-import { useState, useContext } from "react";
-import AppContext from "../../context/AppContext";
-import { showMessage } from "../../components/common";
+import { useState } from "react";
+import { useAuthContext } from "../../../context/AppContext";
+import { showMessage } from "../../common";
+import { useNavigate } from "react-router-dom";
 
-export type LoginFormValues = {
+export type TLoginFormValues = {
   username: string;
 };
 
-const useLoginForms = () => {
+export const useLoginForms = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const { setUsername } = useContext(AppContext);
+  const { setUsername } = useAuthContext();
+  const navigate = useNavigate();
 
-  const handleSubmit = (values: LoginFormValues) => {
+  const handleSubmit = (values: TLoginFormValues) => {
     try {
       setLoading(true);
       const { username } = values;
       localStorage.setItem("username", username);
       setUsername(username);
       setLoading(false);
+      navigate("/home");
     } catch (err) {
       showMessage("error", "Something went wrong");
       setLoading(false);
@@ -29,5 +32,3 @@ const useLoginForms = () => {
     loading,
   };
 };
-
-export default useLoginForms;

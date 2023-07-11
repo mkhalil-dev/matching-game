@@ -1,10 +1,19 @@
 type FlexProps = {
   children: React.ReactNode;
   style?: React.CSSProperties;
+  justifyContent?: React.CSSProperties["justifyContent"];
+  alignItems?: React.CSSProperties["alignItems"];
 };
 
 export const Flex = ({ children, ...props }: FlexProps) => (
-  <div style={{ display: "flex", ...props.style }}>{children}</div>
+  <div
+    style={{
+      display: "flex",
+      ...props.style,
+    }}
+  >
+    {children}
+  </div>
 );
 
 export const FlexColumn = ({ children, ...props }: FlexProps) => (
