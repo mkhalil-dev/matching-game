@@ -37,7 +37,7 @@ const Game = ({ attempts }: IGameProps) => {
   const [selectedCards, setSelectedCards] = useState<ISelectedCard[]>([]);
   const [cards, setCards] = useState<ICard[]>(shuffledArray);
   const [foundMatches, setFoundMatches] = useState<number[]>([]);
-  const { setAttempts, time, setTime } = useGameContext();
+  const { setAttempts, time, setTime, visible, setVisible } = useGameContext();
   const { handleClick } = useCardClick({
     cards,
     foundMatches,
@@ -49,6 +49,8 @@ const Game = ({ attempts }: IGameProps) => {
     setAttempts,
     time,
     setTime,
+    visible,
+    setVisible,
   });
 
   // Flip the cards back after 5 seconds

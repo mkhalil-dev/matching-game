@@ -4,7 +4,6 @@ import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Home from "../pages/Home";
 import { useAuthContext } from "../context/AppContext";
-import { Success } from "../pages/Success";
 
 const AppRoutes: React.FC = () => {
   const { username } = useAuthContext();
@@ -13,7 +12,6 @@ const AppRoutes: React.FC = () => {
       {username ? (
         <>
           <Route path="/home" element={<Home />} />
-          <Route path="/success" element={<Success />} />
           <Route path="/" element={<Home />} />
         </>
       ) : (
