@@ -2,31 +2,51 @@ import { Layout, Typography } from "antd";
 import Game from "../components/Home/Game";
 import { AppMenu } from "../components/common/navigation/NavBar";
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 const Home = () => {
   return (
     <>
-      <Header
+      <Layout
         style={{
-          padding: 0,
-          marginBottom: "24px",
-          backgroundColor: "#fff",
+          minHeight: "100vh",
         }}
       >
-        <AppMenu />
-      </Header>
-      <Content>
-        <Typography.Title
-          level={3}
+        <Layout>
+          <Header
+            style={{
+              padding: 0,
+              marginBottom: "24px",
+              backgroundColor: "#fff",
+            }}
+          >
+            <AppMenu />
+          </Header>
+          <Content
+            style={{
+              margin: "24px 0",
+            }}
+          >
+            <Typography.Title
+              level={3}
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Matching Cards
+            </Typography.Title>
+            <Game />
+          </Content>
+        </Layout>
+        <Footer
           style={{
             textAlign: "center",
+            borderTop: "1px solid #f0f0f0",
           }}
         >
-          Matching Cards
-        </Typography.Title>
-        <Game />
-      </Content>
+          Matching Cards Game ©2023 Created by Mohamad Khalil
+        </Footer>
+      </Layout>
     </>
   );
 };
