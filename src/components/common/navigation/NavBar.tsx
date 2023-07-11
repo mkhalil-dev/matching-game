@@ -29,7 +29,11 @@ export const AppMenu: React.FC = () => {
   const [selectedKey, setSelectedKey] = useState<MenuProps["selectedKeys"]>();
 
   useEffect(() => {
-    setSelectedKey([window.location.pathname.slice(1)]);
+    setSelectedKey([
+      window.location.pathname === "/"
+        ? "home"
+        : window.location.pathname.slice(1),
+    ]);
   }, []);
 
   const onClick: MenuProps["onClick"] = (e) => {
