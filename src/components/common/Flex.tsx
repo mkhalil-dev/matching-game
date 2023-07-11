@@ -1,8 +1,6 @@
 type FlexProps = {
   children: React.ReactNode;
   style?: React.CSSProperties;
-  justifyContent?: React.CSSProperties["justifyContent"];
-  alignItems?: React.CSSProperties["alignItems"];
   dataTestId?: string;
 };
 
