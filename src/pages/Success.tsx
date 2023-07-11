@@ -7,14 +7,14 @@ import { useGameContext } from "../context/GameContext";
 
 export const Success = () => {
   const navigate = useNavigate();
-  const { attempts, setAttempts } = useGameContext();
-  console.log(attempts);
+  const { attempts, setAttempts, time } = useGameContext();
+
   return (
     <AppLayout>
       <Result
         status="success"
         title="Congratulations, you won!"
-        subTitle={`You found all the matching cards in ${attempts} attempts.`}
+        subTitle={`You found all the matching cards in ${attempts} attempts. It took you ${time} seconds to complete the game.`}
         icon={<Image src={celebrate} preview={false} width={300} />}
         extra={[
           <Button

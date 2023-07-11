@@ -7,10 +7,12 @@ interface IUseCardClickProps {
   selectedCards: ISelectedCard[];
   foundMatches: number[];
   attempts: number;
+  time: number;
   setAttempts: (attempts: number) => void;
   setCards: (cards: ICard[]) => void;
   setSelectedCards: (selectedCards: ISelectedCard[]) => void;
   setFoundMatches: (foundMatches: number[]) => void;
+  setTime: (time: number) => void;
 }
 
 export interface ICardClickProps {
@@ -29,6 +31,8 @@ export const useCardClick = ({
   setSelectedCards,
   attempts,
   setAttempts,
+  time,
+  setTime,
 }: IUseCardClickProps) => {
   const navigate = useNavigate();
   const handleClick = ({ card }: ICardClickProps) => {
@@ -36,6 +40,8 @@ export const useCardClick = ({
 
     // If the card is already flipped or if there are 2 already flipped, do nothing
     if (isFlipped || selectedCards.length === 2) return;
+    // If the time is 0, set the time to the current time
+    if (time === 0) setTime(Date.now());
     // If the card is not flipped, flip it
     const newCards = [...cards];
     newCards[index].isFlipped = true;
@@ -61,6 +67,9 @@ export const useCardClick = ({
       } else {
         // If the foundMatches array already has a length of 7, the game is over
         if (foundMatches.length === 7) {
+          // Calculate the time it took to finish the game
+          const timeToFinish = Math.floor((Date.now() - time) / 1000);
+          setTime(timeToFinish);
           navigate("/success");
         } else {
           // If the values are the same, add the index of the cards to the foundMatches array

@@ -5,7 +5,7 @@ import { AppLayout } from "../components/common/Layout/Layout";
 import { useGameContext } from "../context/GameContext";
 
 const Home = () => {
-  const { attempts, setAttempts } = useGameContext();
+  const { attempts } = useGameContext();
 
   return (
     <AppLayout>
@@ -18,7 +18,7 @@ const Home = () => {
         Matching Cards
       </Typography.Title>
       <SubMenu attempts={attempts} />
-      <Game attempts={attempts} setAttempts={setAttempts} />
+      <Game attempts={attempts} />
     </AppLayout>
   );
 };
