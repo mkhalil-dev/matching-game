@@ -25,9 +25,7 @@ export const SubMenu = ({ attempts }: ISubMenuProps) => {
           width: "70px",
         }}
       >
-        <Tag color="blue">
-          {attempts > 1 ? `Attempts: ${attempts}` : `Attempt: ${attempts}`}
-        </Tag>
+        <Tag color="blue">Mismatch: {attempts}</Tag>
       </Title>
       <Title
         level={4}

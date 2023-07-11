@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { message } from "antd";
 import AppRoutes from "./routes";
 import { AuthProvider } from "./context/AppContext";
+import { GameContextProvider } from "./context/GameContext";
 
 const App: React.FC = () => {
   // We use the AppContext to store the username of the user.
@@ -12,8 +13,10 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        {contextHolder}
-        <AppRoutes />
+        <GameContextProvider>
+          {contextHolder}
+          <AppRoutes />
+        </GameContextProvider>
       </AuthProvider>
     </BrowserRouter>
   );
