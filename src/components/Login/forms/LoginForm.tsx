@@ -26,11 +26,16 @@ const LoginForm = ({ loading, onSubmit }: TLoginFormProps) => {
         ]}
         label="Username"
       >
-        <Input />
+        <Input data-testid="login-form-username" />
       </Item>
       <Divider />
       <Item>
-        <Button loading={loading} htmlType="submit" type="primary">
+        <Button
+          loading={loading}
+          data-testid="login-form-submit"
+          htmlType="submit"
+          type="primary"
+        >
           Login
         </Button>
       </Item>

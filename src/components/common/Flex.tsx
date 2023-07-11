@@ -3,10 +3,12 @@ type FlexProps = {
   style?: React.CSSProperties;
   justifyContent?: React.CSSProperties["justifyContent"];
   alignItems?: React.CSSProperties["alignItems"];
+  dataTestId?: string;
 };
 
-export const Flex = ({ children, ...props }: FlexProps) => (
+export const Flex = ({ children, dataTestId, ...props }: FlexProps) => (
   <div
+    data-testid={dataTestId}
     style={{
       display: "flex",
       ...props.style,
@@ -16,8 +18,9 @@ export const Flex = ({ children, ...props }: FlexProps) => (
   </div>
 );
 
-export const FlexColumn = ({ children, ...props }: FlexProps) => (
+export const FlexColumn = ({ children, dataTestId, ...props }: FlexProps) => (
   <div
+    data-testid={dataTestId}
     style={{
       display: "flex",
       flexDirection: "column",
@@ -28,9 +31,10 @@ export const FlexColumn = ({ children, ...props }: FlexProps) => (
   </div>
 );
 
-export const FlexCenter = ({ children, ...props }: FlexProps) => {
+export const FlexCenter = ({ children, dataTestId, ...props }: FlexProps) => {
   return (
     <div
+      data-testid={dataTestId}
       style={{
         display: "flex",
         justifyContent: "center",
